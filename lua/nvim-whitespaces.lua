@@ -1,7 +1,7 @@
 local M = {}
 local autocmd = vim.api.nvim_create_autocmd
 local config = {
-    on_event = 'BufWritePre',
+    on_event = { 'BufWritePre' },
     ignore_ft = { 'markdown' },
 }
 
@@ -24,7 +24,7 @@ function M.setup(options)
 
     vim.api.nvim_create_augroup("nvim_whitespaces", { clear = true })
 
-    autocmd({ config["on_event"] }, {
+    autocmd(config["on_event"], {
         group = "nvim_whitespaces",
         pattern = "*",
         command = "TrimSpaces",
